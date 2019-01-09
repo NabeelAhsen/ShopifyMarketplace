@@ -3,7 +3,7 @@
  * The code written in this project is documented in the guides subfolder and
  * can be accessed via GitHub.
  *
- * 2019 Nabeel Ahsen
+ * Nabeel Ahsen - 2019
  */
 
 // dependencies
@@ -14,5 +14,5 @@ const port = process.env.PORT || 3000;
 
 // server
 app.listen(port, () => {
-  console.info(`[ShopifyMarketplace: ${Date()}] - Listening on port ${port}`);
+  console.info(`[ShopifyMarketplace: ${Date()}] - Listening on port ${port}`); // eslint-disable-line no-console
 });
