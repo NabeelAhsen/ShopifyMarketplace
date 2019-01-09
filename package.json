@@ -1,0 +1,31 @@
+{
+  "name": "shopifymarketplace",
+  "version": "1.0.0",
+  "description": "Shopify's 2019 Developer Tech Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NabeelAhsen/ShopifyMarketplace.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "api",
+    "rest",
+    "challenge",
+    "commerce"
+  ],
+  "author": "Nabeel Ahsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NabeelAhsen/ShopifyMarketplace/issues"
+  },
+  "homepage": "https://github.com/NabeelAhsen/ShopifyMarketplace#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0"
+  }
+}
