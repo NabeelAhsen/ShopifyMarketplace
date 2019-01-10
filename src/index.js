@@ -8,9 +8,18 @@
 
 // dependencies
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// import api version-X
+const v1 = require('./controllers/api/v1');
+
+app.use('/marketplace/api/v1', v1);
 
 // server
 app.listen(port, () => {

@@ -27,4 +27,7 @@ npm run serve
 
 ## Sample user session walkthrough
 
+
+
+
 **credentials:** shopaway/shopawayfrends

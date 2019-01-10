@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>colorIndex</key>
+			<integer>4</integer>
+			<key>database</key>
+			<string>shopify_marketplace</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-3863453380452501887</string>
+			<key>name</key>
+			<string>nabeel's mbp</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJSZYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiRYTlNPYmplY3Rf
+			EA9OU0tleWVkQXJjaGl2ZXLRJyhUZGF0YYABAAgAEQAaACMALQAy
+			ADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMA
+			tQC3ALwAxwDQANsA3gDpAPIA9wEEAQcBEAEiASUBKgAAAAAAAAIB
+			AAAAAAAAACkAAAAAAAAAAAAAAAAAAAEs
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1187, 1018}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS carts;
+DROP TABLE IF EXISTS items_in_carts;
+
+CREATE TABLE `users` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  	`username` varchar(255) NOT NULL,
+  	`password` varchar(255) NOT NULL,
+  	PRIMARY KEY (`id`),
+  	UNIQUE KEY (`username`)
+);
+
+CREATE TABLE `products` (
+	`title` varchar(255) NOT NULL,
+	`price` decimal(13, 2),
+	`inventory_count` int(11) unsigned DEFAULT 0 CHECK (`inventory_count` &gt;= 0),
+	PRIMARY KEY(`title`)
+);
+
+CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` ENUM ('Pending', 'Completed') DEFAULT 'Pending',
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+);
+
+CREATE TABLE `items_in_carts` (
+	`cart_id` bigint(20) unsigned,
+	`product` varchar(255),
+	CONSTRAINT FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
+	CONSTRAINT FOREIGN KEY (`product`) REFERENCES `products` (`title`)
+);
+
+
+-- Users
+
+INSERT INTO users(`username`, `password`) VALUES ('demo', 'password');
+
+
+-- Products
+
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Toy Story Action Figurine - BuzzLight Year', 34.56, 2);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Marvel Suits - Tony Stark MK II', 299.45, 1);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Bubble Gum', 0.98, 145);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Amazon Kindle Knockoffs', 199.95, 434);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('House', 100.14, 0);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Cucumber', 56.97, 29);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Mulan Action Figure', 89.45, 9);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Hulkbuster T-Shirt', 23.00, 378);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Hello Kitty Socks (2 pack)', 10.12, 0);
+INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Pack o\' smokes', 15.00, 100);
+
+-- Carts
+</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>214</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>-- Carts
+
+INSERT INTO carts(`user_id`) VALUES (1)</string>
+		<string>CREATE TABLE `items_in_carts` (
+	`cart_id` bigint(20) unsigned,
+	`product` varchar(255),
+	CONSTRAINT FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
+	CONSTRAINT FOREIGN KEY (`product`) REFERENCES `products` (`title`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` ENUM ('Pending', 'Completed') DEFAULT 'Pending',
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>DROP TABLE IF EXISTS carts</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` ENUM ('Pending', 'Completed'),
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` varchar(255) ENUM ('Pending', 'Completed'),
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` varchar(255),
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` varchar(255) ENUM('Pending', 'Completed') DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>a</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` varchar(255) enum('Pending', 'Completed') DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` varchar(36) enum('Pending', 'Completed') DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>CREATE TABLE `carts` (
+	`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+	`user_id` bigint(20) unsigned,
+	`status` varchar(36) ENUM('Pending', 'Completed') DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY (`id`, `user_id`),
+	CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+)</string>
+		<string>M('Pending', 'Completed') DEFAULT 'Pending',
+	PRIMARY KEY (`id`),</string>
+		<string>DROP TABLE IF EXISTS items_in_carts</string>
+		<string>INSERT INTO users(`username`, `password`) VALUES ('demo', 'password')</string>
+		<string>INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Pack o\' smokes', 15.00, 100)</string>
+		<string>INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Hello Kitty Socks (2 pack)', 10.12, 0)</string>
+		<string>INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Hulkbuster T-Shirt', 23.00, 378)</string>
+		<string>INSERT INTO products(`title`, `price`, `inventory_count`) VALUES ('Mulan Action Figure', 89.45, 9)</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.7.24</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
