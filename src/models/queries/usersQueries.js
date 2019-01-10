@@ -5,5 +5,5 @@
 
 module.exports = {
   findByUsername: 'SELECT * FROM users WHERE username = ?',
-  createNewUser: 'INSERT INTO users(username, password) VALUES (?, ?);',
+  createNewUser: 'INSERT INTO users(username, password) VALUES (?, ?)',
 };
