@@ -6,7 +6,7 @@
  * Nabeel Ahsen - 2019
  */
 
-// dependencies
+// ===== dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -16,12 +16,12 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// import api version-X
+// ===== import api version-X
 const v1 = require('./controllers/api/v1');
 
 app.use('/marketplace/api/v1', v1);
 
-// server
+// ===== server
 app.listen(port, () => {
   console.info(`[ShopifyMarketplace: ${Date()}] - Listening on port ${port}`); // eslint-disable-line no-console
 });

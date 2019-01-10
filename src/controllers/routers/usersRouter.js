@@ -22,6 +22,7 @@ const usersRouter = express.Router();
 const user = require('../../models/User');
 
 // ===== configuration options
+
 const tokenOptions = {
   algorithm: 'HS256',
   expiresIn: '1 hour',
