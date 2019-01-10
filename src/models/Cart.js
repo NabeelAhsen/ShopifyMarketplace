@@ -49,6 +49,15 @@ class Cart {
     );
   }
 
+  static completeCart(cartId) {
+    return Promise.using(
+      getSqlConnection(),
+      conn => conn.query(queries.completeCart, [cartId])
+        .then(res => res)
+        .catch((err) => { throw err; }),
+    );
+  }
+
   // static findAllPaginated(page) {
   //   return Promise.using(
   //     getSqlConnection(),

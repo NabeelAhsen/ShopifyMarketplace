@@ -5,7 +5,8 @@
 
 module.exports = {
   createNewCart: 'INSERT INTO carts(`user_id`) VALUE (?)',
-  findAll: 'SELECT items_in_carts.cart_id, carts.status, products.title, products.price, products.inventory_count FROM carts JOIN items_in_carts ON carts.id = items_in_carts.cart_id JOIN products ON items_in_carts.product = products.title WHERE carts.user_id = ?',
-  findById: 'SELECT items_in_carts.cart_id, carts.status, products.title, products.price, products.inventory_count FROM carts JOIN items_in_carts ON carts.id = items_in_carts.cart_id JOIN products ON items_in_carts.product = products.title WHERE carts.user_id = ? AND carts.id = ?',
+  findAll: 'SELECT c.id as cart_id, c.status, p.title, p.price, p.inventory_count FROM carts c LEFT JOIN items_in_carts iic ON c.id = iic.cart_id LEFT JOIN products p ON iic.product = p.title WHERE c.user_id = ?',
+  findById: 'SELECT c.id as cart_id, c.status, p.title, p.price, p.inventory_count FROM carts c LEFT JOIN items_in_carts iic ON c.id = iic.cart_id LEFT JOIN products p ON iic.product = p.title WHERE c.user_id = ? AND c.id = ?',
   addProductToCart: 'INSERT INTO items_in_carts VALUES (?, ?)',
+  completeCart: `UPDATE products p JOIN items_in_carts iic ON p.title = iic.product JOIN carts c on c.id = iic.cart_id SET p.inventory_count = p.inventory_count -1, c.status = 'Completed' WHERE c.id = ?`,
 };
