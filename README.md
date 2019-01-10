@@ -13,7 +13,7 @@ For further design documentation, please visit the following markdowns:
 
 This api has been built for Shopify's 2019 developer challenge. The tech stack used is node.js using the express framework for building apis along with a MySQL database.
 
-**This API is designed to work in a local environment provided that you have [npm](#) installed along with Node >=v10 and a MySQL database.**
+**You can interact with this API using NPM. Ensure you've got Node installed using [Node Version Manager](https://github.com/creationix/nvm). Simply run `nvm use` in the root of this repository.**
 
 Should time permit, a cloud-serviced MySQL database will be provisioned for the purposes of demoing. If such a database is not provided, you may have to configure MySQL locally or on a cloud-hosted platform (such as AWS).
 

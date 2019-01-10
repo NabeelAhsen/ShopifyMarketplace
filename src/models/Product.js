@@ -48,6 +48,15 @@ class Product {
         .catch((err) => { throw err; }),
     );
   }
+
+  static findInventoryOfProduct(product) {
+    return Promise.using(
+      getSqlConnection(),
+      conn => conn.query(queries.findInventoryOfProduct, [product])
+        .then(res => res)
+        .catch((err) => { throw err; }),
+    );
+  }
 } // end of class Product
 
 module.exports = Product;
