@@ -23,3 +23,7 @@ With this knowledge, it's easy to reconstruct the payload of each JWT passed bac
 Certain configuration variables, like database hostnames, password, and server/client secrets are used throughout this API. Since there isn't any risk, I sought to leave these variables in a configuration file that never gets pushed up to a repository. The idea is that everyone who pulls this repository needs to start from a configuration template and fill in their own details.
 
 However, to secure these variables furthur, these variables would ideally be abstracted away to environment variables at the scope of the machine or process. Ultimately I would look into an encrypted storage system I've used in the past like [Hashicorp Vault](https://www.vaultproject.io/) to ensure minimal risk of these variables falling into wrong hands.
+
+## Tech Stack
+
+As with most projects using third-party libraries and frameworks, there is always a security risk involved. This project is no exception. In order to get a functional API within two nights, I relied on NPM packages for their convenience. To minimize security risk, I made sure to use well-revised packages and those widely regarded as "safe" by the NPM community. I regularly review audits done against the libraries I choose to use for projects.
