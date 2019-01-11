@@ -6,8 +6,8 @@ For further design documentation, please visit the following resources:
 
 - [Shopify Marketplace API][api] - Documentation for the entire  functional API.
 - [DATABASE.md][database] - Outlines the schema and decisions made for the provisioned DB.
-- [SECURITY.md](#) - Discusses the security decisions made for the tech stack as well as the API. Describes the use of JWT for authentication.
-- [SYSTEM_DESIGN.md](#) - Describes the overall intended design of the marketplace shopping experience. Outlines nuances and shortcomings.
+- [SECURITY.md][security] - Discusses the security decisions made for the tech stack as well as the API. Describes the use of JWT for authentication.
+- [DESIGN.md][design] - Describes the overall intended design of the marketplace shopping experience. Outlines nuances and shortcomings.
 
 ## Getting started
 
@@ -15,7 +15,7 @@ This api has been built for Shopify's 2019 developer challenge. The tech stack u
 
 **You can interact with this API using NPM. Ensure you've got Node installed using [Node Version Manager][nvm]. Simply run `nvm use` in the root of this repository.**
 
-For the time being, this application is intended to be served locally. However, a MySQL database has been provisioned on AWS for the purposes of demoing. If you're a reviewer, you should have received credentials to the database with the 2019 challenge submission. If you can't seem to find the credentials, please reach out to me.
+For the time being, this application is intended to be served locally. However, a MySQL database has been provisioned on AWS for the purposes of demoing. If you're a reviewer, you should have received credentials to the database with the 2019 challenge submission. If you can't seem to find the credentials, or would like a sample of this API hosted, on Heroku for example, please reach out to me.
 
 ---
 
@@ -76,7 +76,7 @@ RESPONSE 200
 
 ## Sample shopping flows :shipit:
 
-> Consult with [Shopify Marketplace API](https://documenter.getpostman.com/view/5189379/RznHHwk1) for complete API capabilities
+> Refer to [Shopify Marketplace API](https://documenter.getpostman.com/view/5189379/RznHHwk1) for complete API capabilities
 
 ### Browsing available products
 
@@ -86,7 +86,7 @@ To view all (top 500, by implementation) products, you can hit the following non
 GET /marketplace/api/v1/products
 ```
 
-This might result in quite a bit of products, so let's narrow down to the first 10 products.
+This might show too many products; let's narrow down to the first 10 via pagination.
 
 ```
 GET /marketplace/api/v1/products?page=1
@@ -306,7 +306,7 @@ Some important things to note on carts:
 
 - Users can only view and operate on carts owned by them. Cart Ids can easily be guessed, but can't be accessed
 - Products with an inventory count of 0 cannot be added to a cart. (Go ahead, try to add a product with `inventory_count` 0 to an available cart)
-- A user is able to obtain information a specific cart they own along with every carts they've ever created.
+- A user is able to obtain information on a specific cart they own along with every cart they've ever created.
 - Empty carts can be completed to indicate they no should not longer be used.
 - Products that are purchased reduce the total inventory counts of products across the database.
 
@@ -359,7 +359,7 @@ User2's cart:
 }
 ```
 
-When User 1 proceeds to check out their cart, the resulting carts as follows:
+When User 1 proceeds to check out their cart, the resulting carts are as follows:
 
 ```
 User1's cart:
@@ -404,8 +404,8 @@ User2's cart:
 <!-- links -->
 [api]: https://documenter.getpostman.com/view/5189379/RznHHwk1
 [database]: docs/DATABASE.md
-[security]:
-[system_design]:
+[security]: docs/SECURITY.md
+[design]: docs/DESIGN.md
 
 [postman]: https://www.getpostman.com/
 [nvm]: https://github.com/creationix/nvm
