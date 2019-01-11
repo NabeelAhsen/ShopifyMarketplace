@@ -58,32 +58,14 @@ class Cart {
     );
   }
 
-  // static findAllPaginated(page) {
-  //   return Promise.using(
-  //     getSqlConnection(),
-  //     conn => conn.query(queries.findAllPaginated, [page])
-  //       .then(res => res)
-  //       .catch((err) => { throw err; }),
-  //   );
-  // }
-  //
-  // static findAllInStock() {
-  //   return Promise.using(
-  //     getSqlConnection(),
-  //     conn => conn.query(queries.findAllInStock)
-  //       .then(res => res)
-  //       .catch((err) => { throw err; }),
-  //   );
-  // }
-  //
-  // static findAllInStockPaginated(page) {
-  //   return Promise.using(
-  //     getSqlConnection(),
-  //     conn => conn.query(queries.findAllInStockPaginated, [page])
-  //       .then(res => res)
-  //       .catch((err) => { throw err; }),
-  //   );
-  // }
+  static purgeOutOfStocksFromCarts() {
+    return Promise.using(
+      getSqlConnection(),
+      conn => conn.query(queries.purgeOutOfStocksFromCarts)
+        .then(res => res)
+        .catch((err) => { throw err; }),
+    );
+  }
 } // end of class Cart
 
 module.exports = Cart;

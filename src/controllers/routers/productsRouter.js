@@ -22,10 +22,10 @@ productsRouter.get('/', (req, res) => {
 
   // Check if a page is requested at all
   if (page !== undefined) {
-    const pageNumber = parseInt(page, 10);
+    const pageNumber = (parseInt(page, 10) - 1) * 10;
 
     // check validity of page number
-    if (Number.isNaN(pageNumber) || pageNumber <= 0) {
+    if (Number.isNaN(pageNumber) || pageNumber < 0) {
       return res.status(400).send('Pages start at 1.');
     }
 
@@ -53,10 +53,10 @@ productsRouter.get('/in-stock', (req, res) => {
 
   // Check if a page is requested at all
   if (page !== undefined) {
-    const pageNumber = parseInt(page, 10);
+    const pageNumber = (parseInt(page, 10) - 1) * 10;
 
     // check validity of page number
-    if (Number.isNaN(pageNumber) || pageNumber <= 0) {
+    if (Number.isNaN(pageNumber) || pageNumber < 0) {
       return res.status(400).send('Pages start at 1.');
     }
 

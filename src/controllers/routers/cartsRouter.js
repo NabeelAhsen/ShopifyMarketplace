@@ -28,20 +28,20 @@ const cartReducerFunction = (accumulator, currentValue) => {
     });
   } else {
     const total = currentValue.price || 0;
-    let initial_product = [];
+    const initialProduct = [];
 
     if (currentValue.price) {
-      initial_product.push({
+      initialProduct.push({
         title: currentValue.title,
         price: currentValue.price,
         inventory_count: currentValue.inventory_count,
-      })
+      });
     }
 
     accumulator[currentValue.cart_id] = {
       cart_total: total,
       cart_status: currentValue.status,
-      products: initial_product,
+      products: initialProduct,
     };
   }
   return accumulator;
@@ -76,8 +76,7 @@ cartsRouter.get('/', ensureToken, verifyToken, (req, res) => {
 
   return cart.findAll(id)
     .then((result) => {
-      console.log(result);
-    // reduce this cart to appropriate array
+      // reduce this cart to appropriate array
       const reduced = result.reduce(cartReducerFunction, {});
       return res.status(200).send(reduced);
     })
@@ -168,29 +167,30 @@ cartsRouter.post('/:id/complete', ensureToken, verifyToken, (req, res) => {
   }
 
   return cart.findById(userId, cartId)
-  .then((cartDetails) => {
-    if (cartDetails.length === 0) {
-      return -1;
-    }
+    .then((cartDetails) => {
+      if (cartDetails.length === 0) {
+        return -1;
+      }
 
-    if (cartDetails[0].status !== 'Pending') {
-      return -2;
-    }
-    return cart.completeCart(cartId);
-  })
-  .then((result) => {
-    if (result === -1) {
-      return res.status(400).send("Please provide a valid, non-completed cart.");
-    }
-    if (result === -2) {
-      return res.status(400).send("This cart has already been checked-out!");
-    }
-    return res.status(200).send("Cart successfully checked-out.");
-  })
-  .catch((err) => {
-    console.error(err); // eslint-disable-line no-console
-    return res.status(500).send('Internal server error.');
-  });
-})
+      if (cartDetails[0].status !== 'Pending') {
+        return -2;
+      }
+      return cart.completeCart(cartId);
+    })
+    .then((result) => {
+      if (result === -1) {
+        return res.status(400).send('Please provide a valid, non-completed cart.');
+      }
+      if (result === -2) {
+        return res.status(400).send('This cart has already been checked-out!');
+      }
+      return res.status(200).send('Cart successfully checked-out.');
+    })
+    .then(() => cart.purgeOutOfStocksFromCarts())
+    .catch((err) => {
+      console.error(err); // eslint-disable-line no-console
+      return res.status(500).send('Internal server error.');
+    });
+});
 
 module.exports = cartsRouter;
