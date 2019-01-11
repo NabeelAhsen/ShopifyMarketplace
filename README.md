@@ -399,7 +399,6 @@ User2's cart:
 
 `User2`'s resulting cart no longer has the hairbrush, and they cannot add it again to their carts. If you ask me, they dodged a bullet cause who pays $88 for a hairbrush?
 
-**credentials:** shopaway/shopawayfrends
 
 <!-- links -->
 [api]: https://documenter.getpostman.com/view/5189379/RznHHwk1
