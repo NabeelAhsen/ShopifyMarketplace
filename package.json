@@ -4,9 +4,12 @@
   "description": "Shopify's 2019 Developer Tech Challenge",
   "main": "index.js",
   "scripts": {
+    "preserve": "rm -rf node_modules",
     "serve": "npm install --production && node src/index.js",
     "start": "node_modules/nodemon/bin/nodemon.js src/index.js",
-    "lint": "node_modules/eslint/bin/eslint.js --ext .js --fix src"
+    "lint": "node_modules/eslint/bin/eslint.js --ext .js --fix src test",
+    "init": "npm install && node init.js",
+    "test-db": "./node_modules/.bin/mocha --timeout 5000 --recursive --reporter spec --sort --exit"
   },
   "repository": {
     "type": "git",
@@ -34,10 +37,12 @@
     "promise-mysql": "^3.3.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0",
+    "mysql": "^2.16.0",
     "nodemon": "^1.18.9"
   }
 }

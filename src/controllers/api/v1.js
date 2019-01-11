@@ -13,4 +13,6 @@ v1.use('/users', usersRouter);
 v1.use('/carts', cartsRouter);
 v1.use('/products', productsRouter);
 
+v1.get('/', (req, res) => res.status(200).send('WOOF WOOF BORK!'));
+
 module.exports = v1;
