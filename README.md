@@ -19,7 +19,7 @@ For the time being, this application is intended to be served locally. However, 
 
 ---
 
-To begin, fork this repository and initiate the project by running the following.
+To begin, fork this repository and initiate the project by running the following in a terminal.
 
 ```sh
 npm run init
@@ -40,7 +40,7 @@ If everything's configured, the following connectivity tests should pass. If you
 ```
 npm run test-db
 
-> shopifymarketplace@1.0.0 test-db /Users/nabeelahsen/Documents/ShopifyMarketplace
+> shopifymarketplace@1.0.0 test-db /ShopifyMarketplace
 > mocha --timeout 5000 --recursive --reporter spec --sort --exit
 
 
@@ -74,9 +74,9 @@ RESPONSE 200
 
 ---
 
-## Sample shopping flows
+## Sample shopping flows :shipit:
 
-> Consult with [Shopify Marketplace API][api] for complete API capabilities
+> Consult with [Shopify Marketplace API](https://documenter.getpostman.com/view/5189379/RznHHwk1) for complete API capabilities
 
 ### Browsing available products
 
@@ -166,7 +166,7 @@ RESPONSE 200 OK
 }
 ```
 
-You can copy the token from the response body and attach it on an Authentication header and a "Bear token". Let's try creating a cart now for this user.
+You can copy the token from the response body and attach it on an Authentication header as a "Bearer token". Let's try creating a cart now for this user.
 
 ```
 POST /marketplace/api/v1/carts
@@ -262,9 +262,11 @@ Headers:
   {authentication: "Bearer <json web token>"}
 
 RESPONSE 200 OK
+
+"Cart successfully checked-out."
 ```
 
-To verify that items have truly been purchased, get a list of all of your carts. Notice that the inventory counts of Iron man's suit and the keyboard product has gone down by 1.
+To verify that items have truly been purchased, get a list of all of your carts. Notice that the inventory counts of Iron man's suit and the keyboard product have decremented by 1.
 
 ```
 GET /marketplace/api/v1/carts
@@ -296,7 +298,7 @@ RESPONSE 200 OK
 }
 ```
 
-Your cart's status has been updated `Completed` and the total inventory counts of the two products have reduced by 1. Congratulations, you're now a proud owner of Iron Man's suit! It's OK, just put it on the company card.
+Your cart's status has been updated to `Completed` and the total inventory counts of the two products have reduced by 1. Congratulations, you're now a proud owner of Iron Man's suit! It's OK, just put it on the company card. :smirk:
 
 ### Multi-user shopping experience
 
